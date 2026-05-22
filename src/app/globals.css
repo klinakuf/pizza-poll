@@ -1,0 +1,30 @@
+:root {
+  --bg: #1a0f0a;
+  --card: #2d1810;
+  --card-border: #5c3020;
+  --cheese: #ffd54f;
+  --sauce: #e53935;
+  --crust: #d4a574;
+  --text: #fff8e7;
+  --muted: #c9a88a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(229, 57, 53, 0.15), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(255, 213, 79, 0.1), transparent 35%);
+}
+
+a {
+  color: var(--cheese);
+}
