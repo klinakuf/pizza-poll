@@ -8,8 +8,8 @@ Vote on pineapple, ranch dip, crust-first eating, and more. Each poll has a live
 
 - [Next.js 15](https://nextjs.org/) (App Router)
 - [Vitest](https://vitest.dev/) for unit tests
-- [GitHub Actions](.github/workflows/ci.yml) — lint, test, build on every PR
-- [Vercel](https://vercel.com/) — preview deploys per branch, production on `main`
+- [GitHub Actions](.github/workflows/) — tests on PRs, deploy to Vercel on merge to `main`
+- [Vercel](https://vercel.com/) — production hosting (deployed by GitHub Actions)
 
 ## Quick start (local)
 
@@ -42,30 +42,38 @@ git branch -M main
 git push -u origin main
 ```
 
-## GitHub CI pipeline
+## GitHub pipelines
 
-Workflow file: [`.github/workflows/ci.yml`](.github/workflows/ci.yml)
+Two workflows in [`.github/workflows/`](.github/workflows/):
 
-On every push and pull request to `main`:
+| Workflow | When | What it does |
+|----------|------|----------------|
+| [`pr.yml`](.github/workflows/pr.yml) | Pull request → `main` | `npm ci` → `npm test` |
+| [`deploy.yml`](.github/workflows/deploy.yml) | Push to `main` (after merge) | Build + deploy to Vercel production |
 
-1. `npm ci`
-2. `npm run lint`
-3. `npm test`
-4. `npm run build`
+**Branch protection (recommended):** Settings → Branches → `main` → require status check **test** before merge.
 
-**Recommended:** Settings → Branches → branch protection on `main` → require status check **test-and-build**.
+### One-time: GitHub secrets for Vercel deploy
 
-## Deploy to Vercel
+Repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**:
 
-1. Go to [vercel.com/new](https://vercel.com/new) → **Import** your GitHub repo
-2. Framework preset: **Next.js** (auto-detected)
-3. Add environment variable (optional but great for demos):
+| Secret | Value |
+|--------|--------|
+| `VERCEL_TOKEN` | [Create token](https://vercel.com/account/tokens) (scope: full account or deploy) |
+| `VERCEL_ORG_ID` | `team_HJwQZF2wUvaoArR5vL7mNbTv` |
+| `VERCEL_PROJECT_ID` | `prj_FDa4SWFrcCK394DEhtGIq30v6dJs` |
 
-   | Name | Preview | Production |
-   |------|---------|------------|
-   | `NEXT_PUBLIC_APP_ENV` | `preview` | `production` |
+Org/project IDs are in [`.vercel/project.json`](.vercel/project.json) after `npm run vercel:link`.
 
-4. Deploy — every PR gets a **Preview URL**; merging to `main` updates **Production**
+> If Vercel **Git integration** is also connected to this repo, turn off auto-deploy on push in Vercel → Project → Settings → Git, or you may get **two** production deploys per merge.
+
+**Production URL:** https://project-cicd-example.vercel.app
+
+### Manual deploy (optional)
+
+```bash
+npm run vercel:deploy
+```
 
 > **Note:** Votes are stored in memory on the server. They reset when serverless functions cold-start. Fine for workshops; use Vercel KV or a database for persistence later.
 
