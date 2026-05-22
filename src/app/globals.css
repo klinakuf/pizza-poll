@@ -1,12 +1,13 @@
 :root {
-  --bg: #1a0f0a;
-  --card: #2d1810;
-  --card-border: #5c3020;
-  --cheese: #ffd54f;
-  --sauce: #e53935;
-  --crust: #d4a574;
-  --text: #fff8e7;
-  --muted: #c9a88a;
+  --bg: #120818;
+  --card: #1f1030;
+  --card-border: #7b3fe4;
+  --cheese: #ffeb3b;
+  --sauce: #ff4081;
+  --crust: #b388ff;
+  --text: #faf5ff;
+  --muted: #c9b8e8;
+  --glow: rgba(255, 64, 129, 0.35);
 }
 
 * {
@@ -17,14 +18,185 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   background-image:
-    radial-gradient(circle at 20% 10%, rgba(229, 57, 53, 0.15), transparent 40%),
-    radial-gradient(circle at 80% 90%, rgba(255, 213, 79, 0.1), transparent 35%);
+    radial-gradient(circle at 15% 20%, rgba(123, 63, 228, 0.25), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(255, 64, 129, 0.2), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 235, 59, 0.06), transparent 50%);
 }
 
 a {
   color: var(--cheese);
+}
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.envBadge {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(123, 63, 228, 0.25);
+  border: 1px solid var(--crust);
+  font-size: 0.85rem;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.title {
+  font-size: 2.6rem;
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+  text-shadow: 0 0 24px var(--glow);
+}
+
+.subtitle {
+  color: var(--muted);
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.pollList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pollCard {
+  background: var(--card);
+  border: 2px solid var(--card-border);
+  border-radius: 20px;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(179, 136, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pollCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px var(--glow);
+}
+
+.pollQuestion {
+  margin: 0;
+  font-size: 1.15rem;
+  flex: 1;
+}
+
+.pollHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.pollEmoji {
+  font-size: 1.75rem;
+}
+
+.barTrack {
+  height: 8px;
+  border-radius: 4px;
+  background: #2a1540;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.barFill {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.barFillChaos {
+  background: linear-gradient(90deg, var(--cheese), var(--sauce));
+}
+
+.barFillYes {
+  background: var(--sauce);
+}
+
+.voteTrack {
+  height: 10px;
+  border-radius: 5px;
+  background: #2a1540;
+  overflow: hidden;
+  display: flex;
+}
+
+.voteCrust {
+  flex: 1;
+  background: var(--crust);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.voteMeta {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.buttonRow {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.65rem 0.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.btnYes {
+  background: linear-gradient(135deg, var(--sauce), #c2185b);
+  color: #fff;
+}
+
+.btnNo {
+  background: linear-gradient(135deg, var(--crust), #7b1fa2);
+  color: #fff;
+}
+
+.footer {
+  margin-top: 2.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.loading {
+  text-align: center;
+  color: var(--muted);
 }
