@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  POLLS,
   chaosLevel,
   getPollById,
   isValidPollId,
@@ -20,6 +21,30 @@ describe("poll validation", () => {
 
   it("finds poll definitions", () => {
     expect(getPollById("ranch-dip")?.emoji).toBe("🥛");
+  });
+
+  it("returns undefined for unknown polls", () => {
+    expect(getPollById("deep-dish")).toBeUndefined();
+  });
+});
+
+describe("POLLS catalog", () => {
+  it("defines exactly five debates", () => {
+    expect(POLLS).toHaveLength(5);
+  });
+
+  it("uses unique poll ids", () => {
+    const ids = POLLS.map((p) => p.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("gives every poll a question and vote labels", () => {
+    for (const poll of POLLS) {
+      expect(poll.question.length).toBeGreaterThan(10);
+      expect(poll.yesLabel.length).toBeGreaterThan(0);
+      expect(poll.noLabel.length).toBeGreaterThan(0);
+      expect(poll.emoji.length).toBeGreaterThan(0);
+    }
   });
 });
 
