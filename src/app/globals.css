@@ -1,13 +1,13 @@
 :root {
-  --bg: #120818;
-  --card: #1f1030;
-  --card-border: #7b3fe4;
-  --cheese: #ffeb3b;
-  --sauce: #ff4081;
-  --crust: #b388ff;
-  --text: #faf5ff;
-  --muted: #c9b8e8;
-  --glow: rgba(255, 64, 129, 0.35);
+  --bg: #faf7ff;
+  --card: #ffffff;
+  --card-border: #9c6ade;
+  --cheese: #c9a000;
+  --sauce: #e91e63;
+  --crust: #7e57c2;
+  --text: #1a1028;
+  --muted: #5c4d72;
+  --glow: rgba(233, 30, 99, 0.2);
 }
 
 * {
@@ -22,9 +22,9 @@ body {
   background: var(--bg);
   color: var(--text);
   background-image:
-    radial-gradient(circle at 15% 20%, rgba(123, 63, 228, 0.25), transparent 45%),
-    radial-gradient(circle at 85% 80%, rgba(255, 64, 129, 0.2), transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(255, 235, 59, 0.06), transparent 50%);
+    radial-gradient(circle at 15% 20%, rgba(123, 63, 228, 0.08), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(255, 64, 129, 0.06), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 235, 59, 0.04), transparent 50%);
 }
 
 a {
@@ -47,17 +47,16 @@ a {
   margin: 0 0 1rem;
   padding: 0.4rem 1rem;
   border-radius: 999px;
-  background: rgba(123, 63, 228, 0.25);
+  background: rgba(123, 63, 228, 0.12);
   border: 1px solid var(--crust);
   font-size: 0.85rem;
-  box-shadow: 0 0 20px var(--glow);
+  box-shadow: 0 2px 12px var(--glow);
 }
 
 .title {
   font-size: 2.6rem;
   margin: 0 0 0.5rem;
   line-height: 1.1;
-  text-shadow: 0 0 24px var(--glow);
 }
 
 .subtitle {
@@ -80,13 +79,13 @@ a {
   border: 2px solid var(--card-border);
   border-radius: 20px;
   padding: 1.25rem 1.35rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(179, 136, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(26, 16, 40, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .pollCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px var(--glow);
+  box-shadow: 0 8px 28px var(--glow);
 }
 
 .pollQuestion {
@@ -109,7 +108,7 @@ a {
 .barTrack {
   height: 8px;
   border-radius: 4px;
-  background: #2a1540;
+  background: #e8dff5;
   overflow: hidden;
   margin-top: 4px;
 }
@@ -130,7 +129,7 @@ a {
 .voteTrack {
   height: 10px;
   border-radius: 5px;
-  background: #2a1540;
+  background: #e8dff5;
   overflow: hidden;
   display: flex;
 }
